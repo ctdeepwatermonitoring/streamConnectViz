@@ -1,5 +1,6 @@
+var mydata = null;
 d3.select('#div_1').text("Changed!");
-fetch('./data/img_map.json.gz')
+fetch('./data/img_map.json')
     .then(response => response.json())
-    .then(data => console.log(data));
+    .then(data => mydata = data);
 
