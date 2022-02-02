@@ -1,0 +1,23 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#div_1{
+    font-family: 'Helvetica', sans-serif;
+    position: absolute;
+    z-index: 500;
+    color: navy;
+    top: 20px;
+    left: 80px;
+    display: inline-block;
+}
+
+#map {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+}
+
