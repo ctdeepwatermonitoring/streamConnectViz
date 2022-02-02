@@ -21,4 +21,5 @@ L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voya
 
 d3.json('data/sites.geojson').then((data) => {
     L.geoJson(data).addTo(map)
+    console.log(data);
 });
