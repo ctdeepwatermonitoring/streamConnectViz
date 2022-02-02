@@ -3,7 +3,7 @@ Interactive Web-Based Project to Visualize Stream Connectivity Image Data
 
 ## Mockup
 
-![mockup](readMeImages\StreamConnectViz_MockUp_012622.jpg)
+![mockup](https://github.com/ctdeepwatermonitoring/streamConnectViz/blob/main/readMeImages/StreamConnectViz_MockUp_012622.jpg)
 
 ## Mapping Section Examples / Resources
 
@@ -27,6 +27,6 @@ Time Slider - https://docs.mapbox.com/mapbox-gl-js/example/timeline-animation/
 
 ## Img Section Mockup
 
-![imgMockup](readMeImages\trailcamdata_mockup_div3.jpg)
+![imgMockup](https://github.com/ctdeepwatermonitoring/streamConnectViz/blob/main/readMeImages/trailcamdata_mockup_div3.jpg)
 
 
