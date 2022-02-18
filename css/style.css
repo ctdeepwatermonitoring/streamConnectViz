@@ -4,20 +4,28 @@ body {
     padding: 0;
 }
 
-#div_1{
+#map {
+    position: absolute;
+    width: 66%;
+    height: 50%;
+    top: 0;
+    bottom: 0;
+}
+
+#control {
     font-family: 'Helvetica', sans-serif;
     position: absolute;
     z-index: 500;
     color: navy;
-    top: 20px;
-    left: 80px;
+    top: 25%;
+    right: 15%;
     display: inline-block;
 }
 
-#map {
+#grid {
     position: absolute;
-    width: 100%;
-    top: 0;
-    bottom: 0;
+    overflow: scroll;
+    height: 50%;
+    bottom:0px;
 }
 
