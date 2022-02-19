@@ -34,8 +34,8 @@ d3.json('data/img_map.json').then((data) => {
     function render_week_grid(wk,img_w,img_h){
         console.log(wk);
         var sids   = Object.keys(wk['data']);
-        var width  = (img_w*1.1)*8;
-        var height = (img_h*1.25)*sids.length;
+        var width  = (img_w*0.95)*8;
+        var height = (img_h*0.95)*sids.length;
         var margin = {'top':4,'bottom':4,'left':4,'right':4}
         var day_idx = {"Mon":0, "Tues":1, "Wed":2, "Thur":3, "Fri":4, "Sat":5, "Sun":6};
         var sid_idx = {}
@@ -63,11 +63,11 @@ d3.json('data/img_map.json').then((data) => {
         svg.selectAll('svg')
             .data(data)
             .enter().append('svg:image')
-            .attr('x', function(d) {         return (d.day_idx+1)*img_w*1.1; })
-            .attr('y', function(d) {         return d.sid_idx*img_h*1.25; })
+            .attr('x', function(d) {         return (d.day_idx+1)*img_w*0.95; })
+            .attr('y', function(d) {         return d.sid_idx*img_h*0.95; })
             .attr('xlink:href', function(d){ return 'thumbs/'+d.img; })
-            .attr('width', img_w)
-            .attr('height', img_h);
+            .attr('width', img_w*0.9)
+            .attr('height', img_h*0.9);
     }//-----------------------------------------------------------------------------------------------------------------
 
     imgs = data;
@@ -84,7 +84,7 @@ d3.json('data/img_map.json').then((data) => {
         })
         .on('change',function(d){
             wk = imgs[document.getElementById('week_slider').value];
-            render_week_grid(wk,140,100); //load the grid here
+            render_week_grid(wk,240,120); //load the grid here
         })
     wk = imgs[document.getElementById('week_slider').value];
     d3.select('#week_display').text(wk['weekstart_date']);
