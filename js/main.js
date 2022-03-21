@@ -19,6 +19,16 @@ L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voya
         '&copy;<a href="https://carto.com/attribution">CARTO</a>'
 }).addTo(map);
 
+var boundary = {
+    "color": "black",
+    "weight": 1,
+};
+
+$.getJSON("data/ctStateBoundary.geojson",function(linedata){
+    L.geoJson(linedata,{
+        style:boundary,
+    }).addTo(map);
+});
 // load the geojson site data points and attach to the map
 d3.json('data/sites.geojson').then((map_data) => {
     d3.json('data/img_map.json').then((img_data) => {
