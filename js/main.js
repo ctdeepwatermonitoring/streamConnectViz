@@ -38,6 +38,12 @@ d3.json('data/sites.geojson').then((map_data) => {
             //TODO
         }
 
+        function date_cal(curdate){
+            var result='';
+            return result;
+            //todo
+        }
+
         function render_map(sids) {
             var features_sids = [];
             var features = map_data['features'];
@@ -82,15 +88,35 @@ d3.json('data/sites.geojson').then((map_data) => {
                 sid_idx[sids[i]] = i;
             }
             var data = [];
+            var curdate="";
             for (var i = 0; i < sids.length; i++) {
-                if (wk['data'][sids[i]].length <= 7) { //skip multiple deployments for now...
+                if (wk['data'][sids[i]].length <= 7) { //skip multiple deployments for now..
+                    console.log(wk['weekstart_date']);
+                    var count =-1;
                     for (var j = 0; j < wk['data'][sids[i]].length; j++) {
                         var raw = wk['data'][sids[i]][j]; //get one row of data
+
                         var row = {
                             'sid': sids[i], 'sid_idx': sid_idx[sids[i]], 'label': raw[2],
                             'date': raw[3], 'day_idx': day_idx[raw[5]], 'img': raw[1]
                         };
+                        console.log(row);
                         data.push(row);
+                        count++;
+                        curdate = raw[3];
+                    }
+                    while (count < 6){
+                        var row = {
+                            'sid': sids[i], 'sid_idx': sid_idx[sids[i]], 'label': 'NA',
+                            'date': 'NA', 'day_idx': count+1, 'img': 'placeholder.jpg',
+                        };
+                        data.push(row);
+                        count++;
+                        console.log(row);
+
+                    }
+                    if(wk['weekstart_date']=='18-05-21'){
+                        console.log(count);
                     }
                 } else { //deal with sids that have multiple deployments...
 
@@ -137,7 +163,10 @@ d3.json('data/sites.geojson').then((map_data) => {
                 render_map(sids);
                 render_week_grid(wk, 240, 120); //load the grid here
             })
+        /*d3.selec('#control')
+            .append()*/
         wk = imgs[document.getElementById('week_slider').value];
         d3.select('#week_display').text(wk['weekstart_date']);
+
     });
 });
