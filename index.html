@@ -5,15 +5,33 @@
     <title>Stream VIZ</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="icon" type="image/jpg" href="img/logo.png">
+    <link rel="icon" type="image/jpg" href="img/logo2.png">
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
-    <script src="js/main.js" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+    <script src="js/main.js" defer></script>
 </head>
 <body>
     <div id="map"></div>
     <div id="control"></div>
+    <div id="legend">
+        <h1>Connecticut Streams' Quality</h1>
+        <p> Data from <strong>Department of Energy and Environment Protection</strong></p>
+        <div class='session'>
+            <h2>Color Code for Stream Quality </br>(Heavy to Dry Water Quality)</h2>
+
+            <div class='row colors'>
+            </div>
+            <div class='row labels'>
+                <div class='label'>2</div>
+                <div class='label'>3</div>
+                <div class='label'>4</div>
+                <div class='label'>5</div>
+                <div class='label'>6</div>
+            </div>
+            <br>
+        <p> Please use slider to load data images </p>
+        </div>
+    </div>
     <div id="grid"></div>
 </body>
