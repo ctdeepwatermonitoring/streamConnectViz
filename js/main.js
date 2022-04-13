@@ -37,11 +37,32 @@ d3.json('data/sites.geojson').then((map_data) => {
         function select_deployment(sid_data) {
             //TODO
         }
+/*        function get_labels(sids){
+            var labels =[];
+            var data =[];
+            var sids = Object.keys(wk['data']);
+            for(var i=0; i<data.length; i++) {
+                labels[sids[i]] = data[i]['label'];
+            }
+/!*            for(var i=0; i<data.length; i++) {
+                var sid = data[i]['sid'];
+                labels[sid].push(data[i]['label']);
+                break;
+            }*!/
+            console.log(labels);
+        }*/
 
         function date_cal(curdate){
             var result='';
             return result;
             //todo
+        }
+        function getColor(d){
+            return d == '1' ? '#de7622':
+                d == '2' ? '#b0c324' :
+                    d == '3' ? '#169873' :
+                        d == '4' ? '#1a9cc8' :
+                            'white';
         }
 
         function render_map(sids) {
@@ -57,12 +78,14 @@ d3.json('data/sites.geojson').then((map_data) => {
                     }
                 }
             }
-            console.log(features_sids);
+            //console.log(features_sids);
 
             var presence_options = {
                 radius: 4.0,
                 fillColor: "rgb(255,255,255)",
                 color: "rgb(50,50,50)",
+                //color:getColor(features.properties.labels),
+                //fillColor: getColor(features.properties.labels),
                 opacity: 0.8,
                 fillOpacity: 0.6
             };
@@ -75,6 +98,7 @@ d3.json('data/sites.geojson').then((map_data) => {
             }).addTo(map);
             lastsitesLayer.bringToBack();
         }
+
 
         //take the image paths and generate the thumbnail grid with labeled rects-------------------------------------------
         function render_week_grid(wk, img_w, img_h) {
@@ -91,7 +115,7 @@ d3.json('data/sites.geojson').then((map_data) => {
             var curdate="";
             for (var i = 0; i < sids.length; i++) {
                 if (wk['data'][sids[i]].length <= 7) { //skip multiple deployments for now..
-                    console.log(wk['weekstart_date']);
+                    //console.log(wk['weekstart_date']);
                     var count =-1;
                     for (var j = 0; j < wk['data'][sids[i]].length; j++) {
                         var raw = wk['data'][sids[i]][j]; //get one row of data
@@ -100,7 +124,7 @@ d3.json('data/sites.geojson').then((map_data) => {
                             'sid': sids[i], 'sid_idx': sid_idx[sids[i]], 'label': raw[2],
                             'date': raw[3], 'day_idx': day_idx[raw[5]], 'img': raw[1]
                         };
-                        console.log(row);
+
                         data.push(row);
                         count++;
                         curdate = raw[3];
@@ -112,24 +136,38 @@ d3.json('data/sites.geojson').then((map_data) => {
                         };
                         data.push(row);
                         count++;
-                        console.log(row);
+                        /*console.log(row);*/
 
-                    }
-                    if(wk['weekstart_date']=='18-05-21'){
-                        console.log(count);
                     }
                 } else { //deal with sids that have multiple deployments...
-
+                //console.log(sids);
                 }
             }
+            var  labels =[];
+            for(var i=0; i<data.length; i++) {
+                labels[sids[i]] = data[i]['label'];
+            }
+/*            for(var i=0; i<data.length; i++) {
+                var sid = data[i]['sid'];
+                //labels[sid].push(data[i]['label']);
+                break;
+            }*/
+            console.log(labels);
+            console.log(sids);
+            //console.log(data);
             d3.select('#grid').html(''); //clear the images..
+
             var svg = d3.select('#grid').append('svg')
                 .attr("width", width + margin.left + margin.right)
+
                 .attr("height", height + margin.top + margin.bottom)
                 .append("g")
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
             svg.selectAll('svg')
                 .data(data)
+                .attr('s', function (d){
+                    return d.sid;
+                })
                 .enter().append('svg:image')
                 .attr('x', function (d) {
                     return (d.day_idx + 1) * img_w * 0.95;
@@ -142,7 +180,9 @@ d3.json('data/sites.geojson').then((map_data) => {
                 })
                 .attr('width', img_w * 0.9)
                 .attr('height', img_h * 0.9);
+
         }//-----------------------------------------------------------------------------------------------------------------
+
 
         imgs = img_data;
         wks = Object.keys(imgs);
@@ -159,12 +199,13 @@ d3.json('data/sites.geojson').then((map_data) => {
             .on('change', function (d) {
                 wk = imgs[document.getElementById('week_slider').value];
                 sids = Object.keys(wk['data']);
-                console.log(sids);
+                //console.log(sids);
+                //labels=get_labels(data,sids);
+                //render_map(sids, labels);
                 render_map(sids);
                 render_week_grid(wk, 240, 120); //load the grid here
+                //get_labels(sids);
             })
-        /*d3.selec('#control')
-            .append()*/
         wk = imgs[document.getElementById('week_slider').value];
         d3.select('#week_display').text(wk['weekstart_date']);
 
