@@ -17,9 +17,10 @@ body {
     position: absolute;
     z-index: 500;
     color: navy;
-    top: 25%;
-    right: 15%;
+    top: 35%;
+    right: 20%;
     display: inline-block;
+
 }
 
 #grid {
@@ -28,4 +29,32 @@ body {
     height: 50%;
     bottom:0px;
 }
+#legend{
+    z-index: 500;
+    top: 0%;
+    right:5%;
+    position: absolute;
+    width: 480px;
+    padding: 10px 20px;
+    color: #233d57;
+}
+.session {
+    margin-bottom: 20px;
+}
 
+.row {
+    height: 12px;
+    width: 70%;
+}
+
+.colors {
+    background: linear-gradient(to right, #de7622, #b0c324, #169873, #1a9cc8, #090979);
+    margin-bottom: 5px;
+    width: 70%;
+}
+
+.label {
+    width: 18%;
+    display: inline-block;
+    text-align: center;
+}
