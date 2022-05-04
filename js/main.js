@@ -163,15 +163,16 @@ d3.json('data/sites.geojson').then((map_data) => {
                 .attr("height", height + margin.top + margin.bottom)
                 .append("g")
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-/*            svg.selectAll('svg')
+            svg.selectAll('svg')
                 .data(sids)
-                .enter().append('svg:text')
-                .attr('x')
+                .enter().append('text')
+                .attr('x', (img_w * 0.95/3))
                 .attr('y', function(d, i){
-                    return i * img_h
-                }
+                    return (i+0.5) * img_h*0.95
+                })
                 .html(function (d){
-                    return d;})*/
+                    return d;});
+
             svg.selectAll('svg')
                 .data(data)
                 .enter().append('svg:image')
