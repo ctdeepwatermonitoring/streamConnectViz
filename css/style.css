@@ -17,8 +17,8 @@ body {
     position: absolute;
     z-index: 500;
     color: navy;
-    top: 35%;
-    right: 20%;
+    top: 43%;
+    right: 16%;
     display: inline-block;
 
 }
@@ -32,10 +32,10 @@ body {
 #legend{
     z-index: 500;
     top: 0%;
-    right:5%;
+    right:1%;
     position: absolute;
     width: 480px;
-    padding: 10px 20px;
+    padding: 5px 20px;
     color: #233d57;
 }
 .session {
