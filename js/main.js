@@ -37,25 +37,10 @@ d3.json('data/sites.geojson').then((map_data) => {
         function select_deployment(sid_data) {
             //TODO
         }
-/*        function get_labels(sids){
-            var labels =[];
-            var data =[];
-            var sids = Object.keys(wk['data']);
-            for(var i=0; i<data.length; i++) {
-                labels[sids[i]] = data[i]['label'];
-            }
-/!*            for(var i=0; i<data.length; i++) {
-                var sid = data[i]['sid'];
-                labels[sid].push(data[i]['label']);
-                break;
-            }*!/
-            console.log(labels);
-        }*/
 
-        function date_cal(curdate){
+/*        function date_cal(curdate){
             var result='';
             return result;
-            //todo
         }
         function getColor(d){
             return d == '1' ? '#de7622':
@@ -63,7 +48,7 @@ d3.json('data/sites.geojson').then((map_data) => {
                     d == '3' ? '#169873' :
                         d == '4' ? '#1a9cc8' :
                             'white';
-        }
+        }*/
 
         function render_map(sids) {
             var features_sids = [];
@@ -84,8 +69,6 @@ d3.json('data/sites.geojson').then((map_data) => {
                 radius: 4.0,
                 fillColor: "rgb(255,255,255)",
                 color: "rgb(50,50,50)",
-                //color:getColor(features.properties.labels),
-                //fillColor: getColor(features.properties.labels),
                 opacity: 0.8,
                 fillOpacity: 0.6
             };
@@ -94,7 +77,7 @@ d3.json('data/sites.geojson').then((map_data) => {
             lastsitesLayer = L.geoJSON({type: "FeatureCollection",features:features_sids},{
                 pointToLayer: function (feature, latlng) {
                     return L.circleMarker(latlng, presence_options);
-                }//,onEachFeature: onEachFeature
+                }
             }).addTo(map);
             lastsitesLayer.bringToBack();
         }
@@ -147,11 +130,6 @@ d3.json('data/sites.geojson').then((map_data) => {
             for(var i=0; i<data.length; i++) {
                 labels[sids[i]] = data[i]['label'];
             }
-/*            for(var i=0; i<data.length; i++) {
-                var sid = data[i]['sid'];
-                //labels[sid].push(data[i]['label']);
-                break;
-            }*/
             console.log(labels);
             console.log(sids);
             //console.log(data);
