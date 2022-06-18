@@ -43,11 +43,11 @@ d3.json('data/sites.geojson').then((map_data) => {
             return result;
         }
         function getColor(d){
-            return d == '1' ? '#de7622':
-                d == '2' ? '#b0c324' :
-                    d == '3' ? '#169873' :
-                        d == '4' ? '#1a9cc8' :
-                            'white';
+            return d >= '1' ? '#de7622':
+                d >= '2' ? '#b0c324' :
+                    d >= '3' ? '#169873' :
+                        d >= '4' ? '#1a9cc8' :
+                            'grey';
         }*/
 
         function render_map(sids) {
@@ -63,7 +63,7 @@ d3.json('data/sites.geojson').then((map_data) => {
                     }
                 }
             }
-            //console.log(features_sids);
+            console.log(features_sids);
 
             var presence_options = {
                 radius: 4.0,
@@ -102,10 +102,10 @@ d3.json('data/sites.geojson').then((map_data) => {
                     var count =-1;
                     for (var j = 0; j < wk['data'][sids[i]].length; j++) {
                         var raw = wk['data'][sids[i]][j]; //get one row of data
-
                         var row = {
                             'sid': sids[i], 'sid_idx': sid_idx[sids[i]], 'label': raw[2],
-                            'date': raw[3], 'day_idx': day_idx[raw[5]], 'img': raw[1]
+                            'date': raw[3], 'day_idx': day_idx[raw[5]], 'img': raw[1],
+                            'color': raw[2]
                         };
 
                         data.push(row);
@@ -155,6 +155,7 @@ d3.json('data/sites.geojson').then((map_data) => {
                 .data(data)
                 .enter().append('svg:image')
                 .attr('x', function (d) {
+                    console.log('d value ===', d)
                     return (d.day_idx + 1) * img_w * 0.95;
                 })
                 .attr('y', function (d) {
@@ -164,7 +165,35 @@ d3.json('data/sites.geojson').then((map_data) => {
                     return 'thumbs/' + d.img;
                 })
                 .attr('width', img_w * 0.9)
-                .attr('height', img_h * 0.9);
+                .attr('height', img_h * 0.9)
+                .attr('style', function (d) {
+                    let color = '';
+                    switch (d.color) {
+                        case 1:
+                            color = '#de7622';
+                            break;
+                        case 2:
+                            color = '#b0c324';
+                            break;
+                        case 3:
+                            color = '#169873';
+                            break;
+                        case 4:
+                            color = '#1a9cc8';
+                            break;
+                        case 5:
+                            color = '#090979';
+                            break;
+                        default:
+                            color = '#fff';
+                            break;
+                    }
+                    return `outline: thick solid ${color};`
+                })
+                // .attr('width', img_w * 0.9).attr('height', img_h * 0.2)
+                .append("svg:title").text(function (d) { return d.color})
+                // append("react").attr('width', img_w * 0.9).attr('height', img_h * 0.2)
+                // .attr('color', 'red');
 
         }//-----------------------------------------------------------------------------------------------------------------
 
